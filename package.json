@@ -22,7 +22,7 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "pnpm run dev:prepare",
+    "prepare": "pnpm run dev:prepare",
     "prepack": "nuxt-module-build",
     "build": "nuxt-module-build",
     "dev": "nuxi dev playground",

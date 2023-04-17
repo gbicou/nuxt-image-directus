@@ -21,7 +21,7 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "nuxi prepare playground",
+    "prepare": "cd playground && nuxi prepare",
     "build": "unbuild",
     "dev": "nuxi dev playground",
     "prepack": "pnpm run build",

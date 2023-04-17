@@ -11,25 +11,34 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
     }
   },
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.mjs",
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "prepare": "cd playground && nuxi prepare",
-    "build": "unbuild",
+    "postinstall": "pnpm run dev:prepare",
+    "prepack": "nuxt-module-build",
+    "build": "nuxt-module-build",
     "dev": "nuxi dev playground",
-    "prepack": "pnpm run build",
+    "dev:build": "nuxi build playground",
+    "dev:preview": "nuxi preview playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "semantic-release"
   },
+  "dependencies": {
+    "@nuxt/kit": "^3.4.1"
+  },
   "devDependencies": {
+    "@nuxt/module-builder": "^0.3.0",
+    "@nuxt/schema": "^3.4.1",
     "@nuxt/image-edge": "1.0.0-28020728.5df24eb",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@semantic-release/changelog": "^6.0.3",

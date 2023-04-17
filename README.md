@@ -24,20 +24,34 @@ yarn add --dev @bicou/nuxt-image-directus
 npm install --save-dev @bicou/nuxt-image-directus
 ```
 
-2. Add `@bicou/nuxt-image-directus` to the `image.providers` section of `nuxt.config.ts`
+2. Add `@bicou/nuxt-image-directus` to the `modules` section of `nuxt.config.ts` **before** `@nuxt/image-edge`
 
 ```js
 export default defineNuxtConfig({
   modules: [
+    // must be listed before @nuxt/image-edge
+    "@bicou/nuxt-image-directus",
+    "@nuxt/image-edge"
+  ]
+})
+```
+
+3. Add the alias `#image-directus` to the list of providers for nuxt image and pass `baseURL` option :
+
+```js
+export default defineNuxtConfig({
+  modules: [
+    "@bicou/nuxt-image-directus",
     "@nuxt/image-edge"
   ],
   image: {
-    provider: "directus", // optionally set directus as default provider  
     providers: {
       directus: {
-        provider: "@bicou/nuxt-image-directus",
+        // need to use runtime alias
+        provider: "#image-directus",
         options: {
-          baseURL: "https://directushost:8055/assets"  
+          // path to your directus assets
+          baseURL: "https://directushost:8055/assets" 
         }  
       }  
     }  
@@ -45,7 +59,7 @@ export default defineNuxtConfig({
 })
 ```
 
-That's it! You can now use `<nuxt-img />` or `<nuxt-picture />` with your Directus assets in your Nuxt app ✨
+That's it! You can now use `<nuxt-img provider="directus" src="..." />` or `<nuxt-picture provider="directus" src="..." />` with your Directus assets in your Nuxt app ✨
 
 ## Development
 

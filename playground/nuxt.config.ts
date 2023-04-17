@@ -3,11 +3,11 @@ export default defineNuxtConfig({
   image: {
     providers: {
       directus: {
-        provider: '@bicou/nuxt-image-directus',
+        provider: "@bicou/nuxt-image-directus",
         options: {
-          baseURL: "http://test/assets"
-        }
-      }
-    }
-  }
+          baseURL: "http://test/assets",
+        },
+      },
+    },
+  },
 });

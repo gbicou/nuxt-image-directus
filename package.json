@@ -25,12 +25,18 @@
     "build": "unbuild",
     "dev": "nuxi dev playground",
     "prepack": "pnpm run build",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "@nuxt/image-edge": "1.0.0-28020728.5df24eb",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@types/node": "^18.15.11",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "nuxt": "^3.4.1",
+    "prettier": "^2.8.7",
     "typescript": "^5.0.4",
     "ufo": "^1.1.1",
     "unbuild": "^1.2.1",

@@ -1,21 +1,21 @@
-import {joinURL, encodeQueryKey, encodeQueryValue} from "ufo";
-import {createOperationsGenerator} from "#image";
-import type {ProviderGetImage} from "@nuxt/image-edge";
+import { joinURL, encodeQueryKey, encodeQueryValue } from "ufo";
+import { createOperationsGenerator } from "#image";
+import type { ProviderGetImage } from "@nuxt/image-edge";
 
 const operationsGenerator = createOperationsGenerator({
-    keyMap: {},
-    joinWith: "&",
-    formatter: (key: string, val: string) =>
-        encodeQueryKey(key) + "=" + encodeQueryValue(val),
+  keyMap: {},
+  joinWith: "&",
+  formatter: (key: string, val: string) =>
+    encodeQueryKey(key) + "=" + encodeQueryValue(val),
 });
 
 export const getImage: ProviderGetImage = (
-    src,
-    {modifiers = {}, baseURL} = {}
+  src,
+  { modifiers = {}, baseURL } = {}
 ) => {
-    const params = operationsGenerator(modifiers);
+  const params = operationsGenerator(modifiers);
 
-    return {
-        url: joinURL(baseURL, src + (params ? "?" + params : "")),
-    };
+  return {
+    url: joinURL(baseURL, src + (params ? "?" + params : "")),
+  };
 };

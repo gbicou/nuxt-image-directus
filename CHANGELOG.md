@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/gbicou/nuxt-image-directus/compare/v1.0.1...v1.0.2) (2023-04-17)
+
+
+### Bug Fixes
+
+* prepare script ([a220713](https://github.com/gbicou/nuxt-image-directus/commit/a220713d5c3cc97dfa7e415387b969135b4c1c70))
+
 ## [1.0.1](https://github.com/gbicou/nuxt-image-directus/compare/v1.0.0...v1.0.1) (2023-04-17)
 
 

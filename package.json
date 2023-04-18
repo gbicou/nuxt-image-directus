@@ -1,6 +1,6 @@
 {
   "name": "@bicou/nuxt-image-directus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Directus provider for NuxtImage",
   "keywords": [],
   "repository": "github:gbicou/nuxt-image-directus",

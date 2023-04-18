@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/gbicou/nuxt-image-directus/compare/v1.0.3...v1.0.4) (2023-04-18)
+
+
+### Bug Fixes
+
+* add options to module ([4968ada](https://github.com/gbicou/nuxt-image-directus/commit/4968ada48d07621678abc3135b8c7f13bdd1f18f))
+
 ## [1.0.3](https://github.com/gbicou/nuxt-image-directus/compare/v1.0.2...v1.0.3) (2023-04-17)
 
 

@@ -1,17 +1,26 @@
-import { joinURL, encodeQueryKey, encodeQueryValue } from "ufo";
+import { parseURL, withBase, encodeQueryItem } from "ufo";
 import { createOperationsGenerator } from "#image";
+import { useRuntimeConfig } from "#app";
 import type { ProviderGetImage } from "@nuxt/image-edge";
 
 const operationsGenerator = createOperationsGenerator({
+  formatter: encodeQueryItem,
   keyMap: {},
   joinWith: "&",
-  formatter: (key: string, val: string) => encodeQueryKey(key) + "=" + encodeQueryValue(val),
 });
 
 export const getImage: ProviderGetImage = (src, { modifiers = {}, baseURL } = {}) => {
-  const params = operationsGenerator(modifiers);
+  const options = useRuntimeConfig().public.imageDirectus;
 
-  return {
-    url: joinURL(baseURL, src + (params ? "?" + params : "")),
-  };
+  // @ts-ignore
+  const operations = operationsGenerator({
+    access_token: options.accessToken || undefined,
+    ...modifiers,
+  });
+
+  const { pathname, search } = parseURL(src);
+  const path = pathname + search + (operations ? (search ? "&" : "?") + operations : "");
+  const url = withBase(path, baseURL ?? options.baseURL);
+
+  return { url };
 };

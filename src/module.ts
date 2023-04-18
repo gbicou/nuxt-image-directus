@@ -1,7 +1,13 @@
 import { createResolver, defineNuxtModule } from "@nuxt/kit";
+import { defu } from "defu";
 
 // Module options TypeScript interface definition
-export interface ModuleOptions {}
+export interface ModuleOptions {
+  // Base URL of directus assets
+  baseURL?: string;
+  // Static access token appended to assets' URL
+  accessToken?: string;
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -10,8 +16,19 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {},
-  setup(_options, nuxt) {
+  setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
-    nuxt.options.alias["#image-directus"] = resolver.resolve("./runtime");
+
+    const runtimeDir = resolver.resolve("./runtime");
+    nuxt.options.build.transpile.push(runtimeDir);
+    nuxt.options.alias["#image-directus"] = runtimeDir;
+
+    nuxt.options.runtimeConfig.public.imageDirectus = defu(
+      nuxt.options.runtimeConfig.public.imageDirectus,
+      {
+        baseURL: options.baseURL,
+        accessToken: options.accessToken,
+      }
+    );
   },
 });

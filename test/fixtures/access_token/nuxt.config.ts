@@ -1,18 +1,16 @@
-import ImageDirectusModule from "../src/module";
+import ImageDirectusModule from "../../../src/module";
 
 export default defineNuxtConfig({
   modules: [ImageDirectusModule, "@nuxt/image-edge"],
   imageDirectus: {
-    baseURL: "http://localhost:8055/assets",
-    // accessToken: "xxx",
+    baseURL: "http://directus:port/assets",
+    accessToken: "xxx",
   },
   image: {
+    provider: "directus",
     providers: {
       directus: {
         provider: "#image-directus",
-        options: {
-          // baseURL: "http://localhost:8055/assets",
-        },
       },
     },
   },

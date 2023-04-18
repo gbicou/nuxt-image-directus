@@ -31,19 +31,16 @@ export default defineNuxtConfig({
   modules: [
     // must be listed before @nuxt/image-edge
     "@bicou/nuxt-image-directus",
-    "@nuxt/image-edge"
-  ]
-})
+    "@nuxt/image-edge",
+  ],
+});
 ```
 
 3. Add the alias `#image-directus` to the list of providers for nuxt image and pass `baseURL` option :
 
 ```js
 export default defineNuxtConfig({
-  modules: [
-    "@bicou/nuxt-image-directus",
-    "@nuxt/image-edge"
-  ],
+  modules: ["@bicou/nuxt-image-directus", "@nuxt/image-edge"],
   image: {
     providers: {
       directus: {
@@ -51,15 +48,63 @@ export default defineNuxtConfig({
         provider: "#image-directus",
         options: {
           // path to your directus assets
-          baseURL: "https://directushost:8055/assets" 
-        }  
-      }  
-    }  
-  }  
-})
+          baseURL: "https://directushost:8055/assets",
+        },
+      },
+    },
+  },
+});
 ```
 
 That's it! You can now use `<nuxt-img provider="directus" src="..." />` or `<nuxt-picture provider="directus" src="..." />` with your Directus assets in your Nuxt app ✨
+
+## Options
+
+### Base URL
+
+You can set the base URL of your directus assets in the `imageDirectus` key of the `nuxt.config.ts` :
+
+```js
+export default defineNuxtConfig({
+  modules: ["@bicou/nuxt-image-directus", "@nuxt/image-edge"],
+  image: {
+    providers: {
+      directus: {
+        provider: "#image-directus",
+      },
+    },
+  },
+  imageDirectus: {
+    // path to your directus assets
+    baseURL: "https://directushost:8055/assets",
+  },
+});
+```
+
+### Access Token
+
+You can set a static access token to be included in all images URL.  
+
+Be careful, this token will be public, do not disclose any token with sensible permissions.
+
+```js
+export default defineNuxtConfig({
+  modules: ["@bicou/nuxt-image-directus", "@nuxt/image-edge"],
+  image: {
+    providers: {
+      directus: {
+        provider: "#image-directus",
+      },
+    },
+  },
+  imageDirectus: {
+    baseURL: "https://directushost:8055/assets",
+    // static access token
+    accessToken: "abcdef"
+  },
+});
+```
+
 
 ## Development
 
@@ -81,14 +126,12 @@ pnpm run lint
 ```
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/@bicou/nuxt-image-directus/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/@bicou/nuxt-image-directus
-
 [npm-downloads-src]: https://img.shields.io/npm/dm/@bicou/nuxt-image-directus.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/@bicou/nuxt-image-directus
-
 [license-src]: https://img.shields.io/npm/l/@bicou/nuxt-image-directus.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/@bicou/nuxt-image-directus
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com

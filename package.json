@@ -55,7 +55,7 @@
     "typescript": "^5.0.4",
     "ufo": "^1.1.2",
     "unbuild": "^1.2.1",
-    "vitest": "^0.31.1",
+    "vitest": "^0.34.0",
     "vue": "^3.3.4"
   },
   "peerDependencies": {

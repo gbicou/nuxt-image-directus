@@ -1,5 +1,7 @@
 # Directus provider for NuxtImage
 
+> **No longer maintained : use the directus provider in @nuxt/image**
+
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
